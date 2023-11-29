@@ -8,7 +8,7 @@ public class PassportDetails {
 	String passportNumber = "";
 	String firstName = ""; 
 	String middleName = "";
-	String lastName = ""; 
+	String lastName = "";
 	String nationality = "";
 	String sex = "";
 	String placeOfBirth = "";
@@ -47,52 +47,16 @@ public class PassportDetails {
 	public void setMiddleName(String middleName) {
 		this.middleName = middleName;
 	}
-	public String getLastName() {
-		return lastName;
-	}
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-	public String getNationality() {
-		return nationality; 
-	}
-	public void setNationility(String nationality) {
-		this.nationality = nationality; 
-	}
-	public String getSex() {
-		return sex; 
-	}
-	public void setSex(String sex) {
-		this.sex = sex;
-	}
-	public String getPlaceOfBirth() {
-		return placeOfBirth;
-	}
-	public void setPlaceOfBirth(String placeOfBirth) {
-		this.placeOfBirth = placeOfBirth; 
-	}
-	public String getIssuingAuthority() {
-		return issuingAuthority;
-	}
-	public void setIssuingAuthority(String issuingAuthority) {
-		this.issuingAuthority = issuingAuthority;
-	}
 	public LocalDate getDateOfBirth() {
 		return dateOfBirth;
 	}
 	public void setDateOfBirth(LocalDate dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
-	public LocalDate getValidUntil() {
-		return validUntil;
-	}
-	public void setValidUntil(LocalDate validUntil) {
-		this.validUntil = validUntil;
-	}
 	public int getPhoneNumber() {
 		return phoneNumber;
 	}
 	public void setPhoneNumber(int phoneNumber) {
-		this.phoneNumber = phoneNumber; 
+		this.phoneNumber = phoneNumber;
 	}
 }
