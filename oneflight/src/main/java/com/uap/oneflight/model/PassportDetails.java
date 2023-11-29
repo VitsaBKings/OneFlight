@@ -1,6 +1,6 @@
 package com.uap.oneflight.model;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class PassportDetails {
 	String passportType = ""; 
@@ -8,13 +8,13 @@ public class PassportDetails {
 	String passportNumber = "";
 	String firstName = ""; 
 	String middleName = "";
-	String lastName = "";
+	String lastName = ""; 
 	String nationality = "";
 	String sex = "";
 	String placeOfBirth = "";
 	String issuingAuthority = "";
-	Date dateOfBirth = null;
-	Date validUntil = null;
+	LocalDate dateOfBirth = null;
+	LocalDate validUntil = null;
 	int phoneNumber = 0;
 	
 	public String getPassportType() {
@@ -88,5 +88,11 @@ public class PassportDetails {
 	}
 	public void setValidUntil(LocalDate validUntil) {
 		this.validUntil = validUntil;
+	}
+	public int getPhoneNumber() {
+		return phoneNumber;
+	}
+	public void setPhoneNumber(int phoneNumber) {
+		this.phoneNumber = phoneNumber; 
 	}
 }
