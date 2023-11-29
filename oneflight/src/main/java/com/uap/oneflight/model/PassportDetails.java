@@ -1,6 +1,6 @@
 package com.uap.oneflight.model;
 
-import java.time.LocalDate;
+import java.util.Date;
 
 public class PassportDetails {
 	String passportType = ""; 
@@ -13,9 +13,8 @@ public class PassportDetails {
 	String sex = "";
 	String placeOfBirth = "";
 	String issuingAuthority = "";
-	LocalDate dateOfBirth = null;
-	LocalDate validUntil = null;
-
+	Date dateOfBirth = null;
+	Date validUntil = null;
 	int phoneNumber = 0;
 	
 	public String getPassportType() {
