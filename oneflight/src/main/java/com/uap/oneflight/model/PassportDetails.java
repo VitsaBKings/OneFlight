@@ -1,6 +1,6 @@
 package com.uap.oneflight.model;
 
-import java.time.LocalDate;
+import java.util.Date;
 
 public class PassportDetails {
 	String passportType = ""; 
@@ -13,9 +13,8 @@ public class PassportDetails {
 	String sex = "";
 	String placeOfBirth = "";
 	String issuingAuthority = "";
-	LocalDate dateOfBirth = null;
-	LocalDate validUntil = null;
-
+	Date dateOfBirth = null;
+	Date validUntil = null;
 	int phoneNumber = 0;
 	
 	public String getPassportType() {
@@ -48,11 +47,17 @@ public class PassportDetails {
 	public void setMiddleName(String middleName) {
 		this.middleName = middleName;
 	}
-	public LocalDate getBirthday() {
-		return birthday;
+	public Date getdateOfBirth() {
+		return dateOfBirth;
 	}
-	public void setBirthday(LocalDate birthday) {
-		this.birthday = birthday;
+	public void setdateOfBirth(Date dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
+	}
+	public Date getValidUntil() {
+		return validUntil;
+	}
+	public void setValidUntil(Date validUntil) {
+		this.validUntil = validUntil;
 	}
 	public int getPhoneNumber() {
 		return phoneNumber;
