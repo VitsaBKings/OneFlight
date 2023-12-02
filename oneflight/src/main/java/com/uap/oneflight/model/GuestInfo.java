@@ -8,6 +8,7 @@ public class GuestInfo {
 	String name = "";
 	LocalDate birthday = null; 
 	int phoneNumber = 0;
+	boolean status = true; //True if activated
 	
 	public String getEmail() {
 		return email;
@@ -38,5 +39,11 @@ public class GuestInfo {
 	}
 	public void setPhoneNumber(int phoneNumber) {
 		this.phoneNumber = phoneNumber;
+	}
+	public boolean getStatus() {
+		return status;
+	}
+	public void setStatus(boolean status) {
+		this.status = status;
 	}
 }
