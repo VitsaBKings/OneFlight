@@ -1,11 +1,17 @@
 package com.uap.oneflight.controller;
 
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-public class LoginController {
+import java.io.IOException;
 
+@WebServlet("/login")
+public class LoginController extends HttpServlet {
+    
     public boolean authenticateUser(String username, String password) {
         // Perform authentication logic here, check if the username and password are valid.
         // Return true if authentication succeeds, false otherwise.
@@ -30,6 +36,20 @@ public class LoginController {
         HttpSession session = request.getSession(false);
         if (session != null) {
             session.invalidate();
+        }
+    }
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+
+        LoginController loginController = new LoginController();
+
+        if (loginController.authenticateUser(username, password)) {
+            loginController.loginUser(request, response, username);
+            response.sendRedirect("HomepageTest.html"); // Redirect to a welcome page after successful login
+        } else {
+            // Authentication failed, you may want to redirect to an error page or show an error message
+            response.sendRedirect("login.html");
         }
     }
 }
