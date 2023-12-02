@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Administration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+        }
+
+        h1,
+        h2 {
+            color: #333;
+        }
+
+        #userList {
+            margin-bottom: 20px;
+        }
+
+        div {
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 5px 10px;
+            cursor: pointer;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            margin-left: 10px;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        #adminControls {
+            background-color: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>User Administration</h1>
+
+    <div id="userList">
+        <!-- Display list of users with roles -->
+        <!-- Example: <div>User: John Doe (Role: GUEST) <button onclick="deactivateUser('JohnDoe')">Deactivate</button></div> -->
+    </div>
+
+    <div id="adminControls">
+        <h2>Admin Controls</h2>
+        <button onclick="activateUser('JohnDoe')">Activate User</button>
+        <button onclick="deactivateUser('JohnDoe')">Deactivate User</button>
+        <button onclick="assignRole('JohnDoe', 'ADMIN')">Assign Admin Role</button>
+        <button onclick="assignRole('JohnDoe', 'GUEST')">Assign Guest Role</button>
+    </div>
+
+    <script>
+        // Example data, replace with dynamic data from your backend
+        const users = [
+            { username: 'JohnDoe', role: 'GUEST', isActive: true },
+            { username: 'Admin123', role: 'ADMIN', isActive: true },
+        ];
+
+        // Function to display users and their roles
+        function displayUsers() {
+            const userList = document.getElementById('userList');
+            userList.innerHTML = '';
+            users.forEach(user => {
+                const userDiv = document.createElement('div');
+                userDiv.textContent = `User: ${user.username} (Role: ${user.role})`;
+                const button = document.createElement('button');
+                button.textContent = user.isActive ? 'Deactivate' : 'Activate';
+                button.onclick = () => toggleUserActivation(user.username);
+                userDiv.appendChild(button);
+                userList.appendChild(userDiv);
+            });
+        }
+
+        // Function to activate/deactivate a user
+        function toggleUserActivation(username) {
+            const user = users.find(u => u.username === username);
+            user.isActive = !user.isActive;
+            displayUsers();
+        }
+
+        // Function to assign a role to a user
+        function assignRole(username, role) {
+            const user = users.find(u => u.username === username);
+            user.role = role;
+            displayUsers();
+        }
+
+        // Initial display
+        displayUsers();
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ONE FLIGHT - FLIGHT SEARCH</title>
+  <link href='https://fonts.googleapis.com/css?family=Rubik-bold' rel='stylesheet'>
+  <style>
+    body {
+      font-family: 'Rubik', sans-serif;
+      font-weight: bold;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f0f0;
+    }
+
+    header {
+      background-color: #3498db;
+      color: #fff;
+      padding: 10px;
+      text-align: center;
+      font-family: 'Rubik', sans-serif;
+      font-weight: bold;
+    }
+
+    main {
+      font-family: 'Rubik', sans-serif;
+      margin: 20px;
+    }
+
+    form {
+      font-family: 'Rubik', sans-serif;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+      font-family: 'Rubik', sans-serif;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    select, input {
+      font-family: 'Rubik', sans-serif;
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+    }
+
+    button {
+      font-family: 'Rubik', sans-serif;
+      background-color: #3498db;
+      color: #fff;
+      padding: 10px;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      font-family: 'Rubik';
+      background-color: #2980b9;
+    }
+
+    #results {
+      font-family: 'Rubik';
+      margin-top: 20px;
+    }
+
+    table {
+      font-family: 'Rubik';
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      font-family: 'Rubik';
+      padding: 10px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1 class="Rubik-bold">ONE FLIGHT - FLIGHT SEARCH</h1>
+  </header>
+
+  <main>
+    <link href='https://fonts.googleapis.com/css?family=Rubik-bold' rel='stylesheet'>
+    <form id="flightSearchForm">
+      <label for="preferredAirline">Preferred Airline:</label>
+      <select id="preferredAirline">
+      </select>
+
+      <label for="travelType">Travel Type:</label>
+      <select id="travelType">
+        <option value="roundTrip">Round Trip</option>
+        <option value="oneWay">One Way</option>
+      </select>
+
+      <label for="originCountry">Origin Country:</label>
+      <select id="originCountry">
+      </select>
+
+      <label for="destinationCountry">Destination Country:</label>
+      <select id="destinationCountry">
+      </select>
+
+      <label for="departureDate">Departure Date:</label>
+      <input type="date" id="departureDate">
+
+      <label for="returnDate">Return Date:</label>
+      <input type="date" id="returnDate">
+
+      <label for="passengerCount">Passenger Count:</label>
+      <input type="number" id="passengerCount" min="1">
+
+      <label for="filters">Filters / Result Modifiers:</label>
+      <input type="checkbox" id="lowestPriceFirst"> <label for="lowestPriceFirst">Lowest Price First</label><br>
+      <input type="checkbox" id="noConnectingFlight"> <label for="noConnectingFlight">Do not allow connecting flight</label>
+
+      <button type="button" onclick="searchFlights()">Search Flights</button>
+    </form>
+
+    <div id="results">
+    </div>
+  </main>
+
+  <script>
+    // Jethro and Jules, put your backend for the logic here :))
+    const supportedAirlines = ['BR', 'PR', 'CX', 'VN', 'KE', 'NH', 'OZ', 'ZP', '2P', 'JX'];
+    const supportedCountries = ['Country1', 'Country2', 'Country3']; 
+
+    function populateOptions(selectId, options) {
+      const select = document.getElementById(selectId);
+      select.innerHTML = '';
+      options.forEach(option => {
+        const optionElement = document.createElement('option');
+        optionElement.value = option;
+        optionElement.textContent = option;
+        select.appendChild(optionElement);
+      });
+    }
+
+    populateOptions('preferredAirline', supportedAirlines);
+    populateOptions('originCountry', supportedCountries);
+
+    function populateDestinationCountries() {
+      const originCountry = document.getElementById('originCountry').value;
+      const preferredAirline = document.getElementById('preferredAirline').value;
+      // Jethro and Jules, put your backend for the logic here :))
+      const destinationCountries = ['Destination1', 'Destination2', 'Destination3']; 
+      populateOptions('destinationCountry', destinationCountries);
+    }
+
+    document.getElementById('originCountry').addEventListener('change', populateDestinationCountries);
+    document.getElementById('preferredAirline').addEventListener('change', populateDestinationCountries);
+
+    function searchFlights() {
+      // Jethro and Jules, put your backend for the logic here :))
+      const resultsDiv = document.getElementById('results');
+      resultsDiv.innerHTML = ''; 
+
+      const table = document.createElement('table');
+      const headerRow = table.insertRow();
+      const headers = ['Flight Number', 'Departure Time', 'Arrival Time', 'Price'];
+      headers.forEach(headerText => {
+        const header = document.createElement('th');
+        header.textContent = headerText;
+        headerRow.appendChild(header);
+      });
+
+      const row = table.insertRow();
+      const cell1 = row.insertCell(0);
+      cell1.textContent = '123';
+      const cell2 = row.insertCell(1);
+      cell2.textContent = '12:00 PM';
+      const cell3 = row.insertCell(2);
+      cell3.textContent = '3:00 PM';
+      const cell4 = row.insertCell(3);
+      cell4.textContent = '$300';
+
+      resultsDiv.appendChild(table);
+    }
+  </script>
+
+</body>
+</html>
