@@ -17,12 +17,20 @@
             color: #333;
         }
 
-        #userList {
+        table {
+            width: 100%;
+            border-collapse: collapse;
             margin-bottom: 20px;
         }
 
-        div {
-            margin-bottom: 10px;
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
         }
 
         button {
@@ -32,17 +40,15 @@
             color: #fff;
             border: none;
             border-radius: 3px;
-            margin-left: 10px;
         }
 
         button:hover {
             background-color: #2980b9;
         }
 
-        #adminControls {
-            background-color: #ecf0f1;
-            padding: 15px;
-            border-radius: 5px;
+        select {
+            padding: 5px;
+            border-radius: 3px;
         }
     </style>
 </head>
@@ -51,56 +57,63 @@
 
     <h1>User Administration</h1>
 
-    <div id="userList">
-        <!-- Display list of users with roles -->
-        <!-- Example: <div>User: John Doe (Role: GUEST) <button onclick="deactivateUser('JohnDoe')">Deactivate</button></div> -->
-    </div>
-
-    <div id="adminControls">
-        <h2>Admin Controls</h2>
-        <button onclick="activateUser('JohnDoe')">Activate User</button>
-        <button onclick="deactivateUser('JohnDoe')">Deactivate User</button>
-        <button onclick="assignRole('JohnDoe', 'ADMIN')">Assign Admin Role</button>
-        <button onclick="assignRole('JohnDoe', 'GUEST')">Assign Guest Role</button>
-    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Role</th>
+                <th>Activation</th>
+                <th>Assign Role</th>
+            </tr>
+        </thead>
+        <tbody id="userList">
+            
+        </tbody>
+    </table>
 
     <script>
-        // Example data, replace with dynamic data from your backend
+        // Jules anbd Jethro, replace this with all the dynamic data backend wise:))
         const users = [
             { username: 'JohnDoe', role: 'GUEST', isActive: true },
             { username: 'Admin123', role: 'ADMIN', isActive: true },
         ];
 
-        // Function to display users and their roles
         function displayUsers() {
             const userList = document.getElementById('userList');
             userList.innerHTML = '';
             users.forEach(user => {
-                const userDiv = document.createElement('div');
-                userDiv.textContent = `User: ${user.username} (Role: ${user.role})`;
-                const button = document.createElement('button');
-                button.textContent = user.isActive ? 'Deactivate' : 'Activate';
-                button.onclick = () => toggleUserActivation(user.username);
-                userDiv.appendChild(button);
-                userList.appendChild(userDiv);
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${user.username}</td>
+                    <td>${user.role}</td>
+                    <td>
+                        <button onclick="toggleUserActivation('${user.username}')">
+                            ${user.isActive ? 'Deactivate' : 'Activate'}
+                        </button>
+                    </td>
+                    <td>
+                        <select onchange="assignUserRole('${user.username}', this.value)">
+                            <option value="ADMIN" ${user.role === 'ADMIN' ? 'selected' : ''}>Admin</option>
+                            <option value="GUEST" ${user.role === 'GUEST' ? 'selected' : ''}>Guest</option>
+                        </select>
+                    </td>
+                `;
+                userList.appendChild(row);
             });
         }
 
-        // Function to activate/deactivate a user
         function toggleUserActivation(username) {
             const user = users.find(u => u.username === username);
             user.isActive = !user.isActive;
             displayUsers();
         }
 
-        // Function to assign a role to a user
-        function assignRole(username, role) {
+        function assignUserRole(username, role) {
             const user = users.find(u => u.username === username);
             user.role = role;
             displayUsers();
         }
 
-        // Initial display
         displayUsers();
     </script>
 
