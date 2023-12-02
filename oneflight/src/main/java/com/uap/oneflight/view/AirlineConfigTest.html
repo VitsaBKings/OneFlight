@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Airline Configuration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        button {
+            padding: 5px 10px;
+            cursor: pointer;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        input, select {
+            padding: 5px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Airline Configuration</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Airline Code</th>
+                <th>Airline Name</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="airlineList">
+
+        </tbody>
+    </table>
+
+    <div>
+        <label for="airlineCode">Airline Code:</label>
+        <input type="text" id="airlineCode" required>
+        <label for="airlineName">Airline Name:</label>
+        <input type="text" id="airlineName" required>
+        <button onclick="addAirline()">Add Airline</button>
+    </div>
+
+    <script>
+        let supportedAirlines = [
+            { code: 'BR', name: 'Airline BR' },
+            { code: 'PR', name: 'Airline PR' },
+            { code: 'CX', name: 'Airline CX' },
+            { code: 'VN', name: 'Airline VN' },
+            { code: 'KE', name: 'Airline KE' },
+            { code: 'NH', name: 'Airline NH' },
+            { code: 'OZ', name: 'Airline OZ' },
+            { code: 'ZP', name: 'Airline ZP' },
+            { code: '2P', name: 'Airline 2P' },
+            { code: 'JX', name: 'Airline JX' },
+        ];
+
+        function displayAirlines() {
+            const airlineList = document.getElementById('airlineList');
+            airlineList.innerHTML = '';
+            supportedAirlines.forEach((airline, index) => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${airline.code}</td>
+                    <td>${airline.name}</td>
+                    <td>
+                        <button onclick="modifyAirline(${index})">Modify</button>
+                        <button onclick="removeAirline('${airline.code}')">Remove</button>
+                    </td>
+                `;
+                airlineList.appendChild(row);
+            });
+        }
+
+        function addAirline() {
+            const airlineCodeInput = document.getElementById('airlineCode');
+            const airlineNameInput = document.getElementById('airlineName');
+            const airlineCode = airlineCodeInput.value.toUpperCase();
+            const airlineName = airlineNameInput.value.trim();
+
+            // Check if the airline code is unique
+            if (supportedAirlines.some(airline => airline.code === airlineCode)) {
+                alert('Airline with the same code already exists.');
+                return;
+            }
+
+            supportedAirlines.push({ code: airlineCode, name: airlineName });
+
+            airlineCodeInput.value = '';
+            airlineNameInput.value = '';
+
+            displayAirlines();
+        }
+
+        function removeAirline(airlineCode) {
+
+            supportedAirlines = supportedAirlines.filter(airline => airline.code !== airlineCode);
+            displayAirlines();
+        }
+
+        function modifyAirline(index) {
+            const modifiedCode = prompt('Enter modified airline code:', supportedAirlines[index].code);
+            const modifiedName = prompt('Enter modified airline name:', supportedAirlines[index].name);
+
+            if (supportedAirlines.some(airline => airline.code === modifiedCode) && modifiedCode !== supportedAirlines[index].code) {
+                alert('Airline with the same code already exists.');
+                return;
+            }
+
+            supportedAirlines[index].code = modifiedCode;
+            supportedAirlines[index].name = modifiedName;
+
+            displayAirlines();
+        }
+
+        displayAirlines();
+    </script>
+
+</body>
+
+</html>

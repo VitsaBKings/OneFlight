@@ -36,6 +36,13 @@
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
 
+    #lowestPriceFirst, #noConnectingFlight {
+            margin-top: 5px;
+            width: 2%;
+            display: flex;
+            align-items: center;
+            justify-self: start ;
+        }
     label {
       font-family: 'Rubik', sans-serif;
       display: block;
@@ -121,8 +128,8 @@
       <input type="number" id="passengerCount" min="1">
 
       <label for="filters">Filters / Result Modifiers:</label>
-      <input type="checkbox" id="lowestPriceFirst"> <label for="lowestPriceFirst">Lowest Price First</label><br>
-      <input type="checkbox" id="noConnectingFlight"> <label for="noConnectingFlight">Do not allow connecting flight</label>
+      <label for="lowestPriceFirst">Lowest Price First</label> <input type="checkbox" id="lowestPriceFirst">
+      <label for="noConnectingFlight">Do not allow connecting flight</label> <input type="checkbox" id="noConnectingFlight">
 
       <button type="button" onclick="searchFlights()">Search Flights</button>
     </form>
