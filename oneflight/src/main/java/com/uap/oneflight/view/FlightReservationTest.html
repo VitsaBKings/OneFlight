@@ -80,7 +80,7 @@
       <label for="bookingForSomeone">I am booking for someone</label>
 
       <label for="travelerName">Traveler Name:</label>
-      <input type="text" id="travelerName">
+      <input type="text" id="travelerName" disabled>
 
       <label for="flightDate">Flight Date:</label>
       <input type="date" id="flightDate">
@@ -92,7 +92,7 @@
   <script>
     function toggleBookingForSomeone() {
       const travelerNameInput = document.getElementById('travelerName');
-      travelerNameInput.disabled = !travelerNameInput.disabled;
+      travelerNameInput.disabled = !document.getElementById('bookingForSomeone').checked;
     }
 
     function submitReservation() {
