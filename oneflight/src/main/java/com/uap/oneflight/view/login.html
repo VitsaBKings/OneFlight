@@ -2,30 +2,38 @@
 <html>
 
 <head>
+    <meta charset="UTF-8">
     <title>login</title>
-    <link rel="stylesheet" href="css/style.css">
-
+    <link rel="stylesheet" href="css/style1.css">
+    <link href='https://fonts.googleapis.com/css?family=Rubik' rel='stylesheet'>
 </head>
-<body>
-<div class="container">
-    <div class="form-box">
-        <h1>Login</h1>
-        <form>
-            <div class="input-group">
-                <div class="input-field">
-                    <label> Email </label>
-                    <input type="email" placeholder="Email">
-                </div>
-                
-                <div class="input-field">
-                    <label> Password </label>
-                    <input type="password" placeholder="Password">
-                </div>
-                <p>Don't have an account? <a href="./user_signup.html">Create account</a></p>
-                <input type="Submit" value="Log In">
-            </div>
-        </form>
 
+<body>
+    <div class="wrapper">
+        <div class="register-container" id="register">
+            <form action="">
+                <h1>Log In</h1>
+
+                <div class="input-box">
+                    <label> Email </label><br>
+                    <input type="email" class="field" placeholder="Email">
+                </div>
+
+                <div class="input-box">
+                    <label> Password </label><br>
+                    <input type="password" class="field" placeholder="Password">
+                </div>
+
+                <div class="submitbtn">
+                    <input type="Submit" class="submit" value="Log In">
+                </div>
+
+                <div class="create-account">
+                    <span>Don't have an account? <a href="./user_signup.html">Create account</a></span>
+                </div>
+            </form>
+        </div>
+    </div>
 </body>
 
 </html>
