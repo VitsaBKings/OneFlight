@@ -5,71 +5,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Administration</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            padding: 0;
-        }
-
-        h1,
-        h2 {
-            color: #333;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-        }
-
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-
-        th {
-            background-color: #f2f2f2;
-        }
-
-        button {
-            padding: 5px 10px;
-            cursor: pointer;
-            background-color: #3498db;
-            color: #fff;
-            border: none;
-            border-radius: 3px;
-        }
-
-        button:hover {
-            background-color: #2980b9;
-        }
-
-        select {
-            padding: 5px;
-            border-radius: 3px;
-        }
-    </style>
+    <link rel="stylesheet" href="css/style2.css">
+    <link href='https://fonts.googleapis.com/css?family=Rubik' rel='stylesheet'>
 </head>
 
 <body>
+    <header>
+        <h1>User Administration</h1>
+    </header>
+    <div class="wrapper">
+        <div class="AirlineConfig">
+            <div class="wrapconf">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Username</th>
+                            <th>Role</th>
+                            <th>Activation</th>
+                            <th>Assign Role</th>
+                        </tr>
+                    </thead>
+                    <tbody id="userList">
 
-    <h1>User Administration</h1>
-
-    <table>
-        <thead>
-            <tr>
-                <th>Username</th>
-                <th>Role</th>
-                <th>Activation</th>
-                <th>Assign Role</th>
-            </tr>
-        </thead>
-        <tbody id="userList">
-            
-        </tbody>
-    </table>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 
     <script>
         // Jules anbd Jethro, replace this with all the dynamic data backend wise:))

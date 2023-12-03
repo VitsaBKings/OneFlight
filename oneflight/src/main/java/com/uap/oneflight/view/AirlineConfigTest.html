@@ -5,76 +5,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Airline Configuration</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            padding: 0;
-        }
-
-        h1 {
-            color: #333;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-        }
-
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-
-        th {
-            background-color: #f2f2f2;
-        }
-
-        button {
-            padding: 5px 10px;
-            cursor: pointer;
-            background-color: #3498db;
-            color: #fff;
-            border: none;
-            border-radius: 3px;
-        }
-
-        button:hover {
-            background-color: #2980b9;
-        }
-
-        input, select {
-            padding: 5px;
-            border-radius: 3px;
-        }
-    </style>
+    <link rel="stylesheet" href="css/style2.css">
+    <link href='https://fonts.googleapis.com/css?family=Rubik' rel='stylesheet'>
 </head>
 
 <body>
+    <header>
+        <h1>Airline Configuration</h1>
+    </header>
 
-    <h1>Airline Configuration</h1>
+    <div class="wrapper">
+        <div class="AirlineConfig">
+            <div class="wrapconf">
+                <table class="airline-table">
+                    <thead>
+                        <tr>
+                            <th>Airline Code</th>
+                            <th>Airline Name</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="airlineList">
 
-    <table>
-        <thead>
-            <tr>
-                <th>Airline Code</th>
-                <th>Airline Name</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody id="airlineList">
+                    </tbody>
+                </table>
 
-        </tbody>
-    </table>
+                <div class="input-container">
+                    <div class="input-box">
+                        <label> Airline Code: </label>
+                        <input type="text" id="airlineCode" placeholder="Airline Code" required>
+                    </div>
 
-    <div>
-        <label for="airlineCode">Airline Code:</label>
-        <input type="text" id="airlineCode" required>
-        <label for="airlineName">Airline Name:</label>
-        <input type="text" id="airlineName" required>
-        <button onclick="addAirline()">Add Airline</button>
+                    <div class="input-box">
+                        <label> Airline Name: </label>
+                        <input type="text" id="airlineName" placeholder="Airline Name" required>
+                    </div>
+
+                    <div class="airlinebtn">
+                        <button id="airlinebtn" onclick="addAirline()">Add Airline</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
