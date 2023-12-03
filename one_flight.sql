@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: one_flight
+-- Host: localhost    Database: one_flight
 -- ------------------------------------------------------
 -- Server version	8.0.34
 
@@ -169,21 +169,21 @@ DROP TABLE IF EXISTS `passport_details`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `passport_details` (
   `passport_detail_id` int NOT NULL AUTO_INCREMENT,
-  `passport_type` varchar(3) DEFAULT NULL,
-  `country_code` varchar(3) DEFAULT NULL,
-  `passport_number` varchar(9) DEFAULT NULL,
-  `surname` varchar(255) DEFAULT NULL,
-  `given_names` varchar(255) DEFAULT NULL,
-  `middle_name` varchar(255) DEFAULT NULL,
-  `nationality` varchar(255) DEFAULT NULL,
-  `sex` varchar(1) DEFAULT NULL,
+  `passport_type` varchar(255) NOT NULL,
+  `country_code` varchar(255) NOT NULL,
+  `passport_number` varchar(255) NOT NULL,
+  `first_name` varchar(255) NOT NULL,
+  `middle_name` varchar(255) NOT NULL,
+  `last_name` varchar(255) NOT NULL,
+  `nationality` varchar(255) NOT NULL,
+  `sex` varchar(255) NOT NULL,
   `date_of_birth` date DEFAULT NULL,
-  `place_of_birth` varchar(255) DEFAULT NULL,
+  `place_of_birth` varchar(255) NOT NULL,
   `date_of_issue` date DEFAULT NULL,
   `valid_until` date DEFAULT NULL,
-  `issuing_authority` varchar(255) DEFAULT NULL,
+  `issuing_authority` varchar(255) NOT NULL,
   PRIMARY KEY (`passport_detail_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -192,6 +192,7 @@ CREATE TABLE `passport_details` (
 
 LOCK TABLES `passport_details` WRITE;
 /*!40000 ALTER TABLE `passport_details` DISABLE KEYS */;
+INSERT INTO `passport_details` VALUES (1,'','','','','','Jumawan','','M',NULL,'',NULL,NULL,''),(2,'','','','','','Jumawan','','M',NULL,'',NULL,NULL,''),(3,'','','','','','Jumawan','','M',NULL,'',NULL,NULL,''),(4,'','','','','','Jumawan','','M',NULL,'',NULL,NULL,''),(5,'','','','','','Jumawan','Filipino','M',NULL,'',NULL,NULL,''),(6,'','','','','','Jumawan','Filipino','M',NULL,'',NULL,NULL,''),(7,'','','','','','Jumawan','Filipino','M',NULL,'',NULL,NULL,''),(8,'','','','','','Jumawan','','M',NULL,'',NULL,NULL,''),(9,'','','','','','Jumawan','Filipino','M',NULL,'',NULL,NULL,''),(10,'','','','','','Jumawan','Filipino','M',NULL,'',NULL,NULL,''),(11,'','','','','','Jumawan','Filipino','M',NULL,'',NULL,NULL,''),(12,'','','','','','Jumawan','Filipino','M',NULL,'',NULL,NULL,''),(13,'','','','','','Jumawan','Filipino','M',NULL,'',NULL,NULL,''),(14,'','','','','','Jumawan','Filipino','M',NULL,'',NULL,NULL,''),(15,'','','','','','Jumawan','Filipino','M',NULL,'',NULL,NULL,''),(16,'','','','','','Jumawan','Filipino','M',NULL,'',NULL,NULL,''),(17,'','','','','','Jumawan','Filipino','M',NULL,'',NULL,NULL,''),(18,'','','','','','','Filipino','M',NULL,'',NULL,NULL,''),(19,'','','','','','','Filipino','M',NULL,'',NULL,NULL,'Jethro'),(20,'123','123','123456','Jethro','Baterina','','Filipino','M','2021-01-01','Quezon City','2021-01-01','2021-01-01','Jethro'),(21,'123','123','123456','Jethro','Baterina','','Filipino','M','2021-01-01','Quezon City','2021-01-01','2021-01-01','Jethro');
 /*!40000 ALTER TABLE `passport_details` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -204,17 +205,20 @@ DROP TABLE IF EXISTS `users`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `users` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `email` varchar(255) DEFAULT NULL,
-  `password` varchar(255) DEFAULT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `birthday` date DEFAULT NULL,
-  `phone_number` varchar(255) DEFAULT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(45) NOT NULL,
+  `first_name` varchar(45) NOT NULL,
+  `middle_name` varchar(45) NOT NULL,
+  `last_name` varchar(45) NOT NULL,
+  `birthday` date NOT NULL,
+  `phone_number` varchar(45) NOT NULL,
   `passport_detail_id` int DEFAULT NULL,
-  `role` varchar(255) DEFAULT NULL,
+  `role` varchar(255) NOT NULL,
+  `status` tinyint NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
   KEY `passport_detail_id` (`passport_detail_id`),
   CONSTRAINT `users_ibfk_1` FOREIGN KEY (`passport_detail_id`) REFERENCES `passport_details` (`passport_detail_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -223,6 +227,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (1,'guest@email.com','password','jethro','baterina','jumawan','2001-01-01','123',NULL,'guest',1),(2,'guest@email.com','password','jethro','baterina','jumawan','2001-01-01','123',NULL,'guest',1),(3,'guest@email.com','password','jethro','baterina','jumawan','2001-01-01','123',NULL,'guest',1),(12,'joshua@email.com','password','','','','2021-01-01','0',0,'guest',1),(13,'joshua@email.com','password','Jethro','Baterina','Jumawan','2021-01-01','0',0,'guest',1),(14,'joshua@email.com','password','Jethro','Baterina','Jumawan','2021-01-01','0',21,'guest',1);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -235,4 +240,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-11-29 15:25:25
+-- Dump completed on 2023-12-03 20:37:30
