@@ -12,10 +12,24 @@ body {
     background-attachment: fixed;
 }
 
-header {
-    background-color: rgb(173, 38, 38);
-    color: #fff;
+.taskbar {
+    background: rgb(173, 38, 38);
+    color: white;
     padding: 30px;
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+    font-family: "Rubik", sans-serif; 
+}
+
+.taskbar a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: 500;
+}
+
+header {
     text-align: center;
     font-size: 36;
     font-weight: 800;
